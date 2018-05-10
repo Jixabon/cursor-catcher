@@ -1,6 +1,5 @@
 {
     "name": "cursor-catcher",
-    "version": "1",
     "scripts": {
         "start": "node app.js"
     },
