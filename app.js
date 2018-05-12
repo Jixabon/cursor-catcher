@@ -7,14 +7,12 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-server.listen(config.server.port, config.server.ip_address, () => {
-  console.log(`Server running at http://${config.server.ip_address}:${config.server.port}/`);
+
+app.use(express.static(__dirname + '/public'));
+
+app.listen(config.server.port, config.server.ip_address, () => {
+    console.log(`Server running at http://${config.server.ip_address}:${config.server.port}/`);
 });
-
-
-app.use('/client/defense.js', require('./public/client/defense')());
-app.use('/client/offense.js', require('./public/client/offense')());
-app.use('/socket.io/socket.io.js', require('./node_modules/socket.io-client/dist/socket.io')());
 
 var Game = require('./game/Game');
 
