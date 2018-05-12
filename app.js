@@ -12,8 +12,9 @@ server.listen(config.server.port, config.server.ip_address, () => {
 });
 
 
-app.get('/client/defense.js', (req, res) => res.sendFile(path.join(__dirname, '/public/client/defense.js')));
-app.get('/client/offense.js', (req, res) => res.sendFile(path.join(__dirname, '/public/client/offense.js')));
+app.use('/client/defense.js', require('./public/client/defense')());
+app.use('/client/offense.js', require('./public/client/offense')());
+app.use('/socket.io/socket.io.js', require('./node_modules/socket.io-client/dist/socket.io')());
 
 var Game = require('./game/Game');
 
