@@ -1,6 +1,8 @@
 var config = require('./config.prod');
 
 var express = require('express');
+var path = require('path');
+
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -9,7 +11,7 @@ server.listen(config.server.port, config.server.ip_address, () => {
   console.log(`Server running at http://${config.server.ip_address}:${config.server.port}/`);
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 var Game = require('./game/Game');
 
