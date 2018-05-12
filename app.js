@@ -11,8 +11,8 @@ server.listen(config.server.port, config.server.ip_address, () => {
   console.log(`Server running at http://${config.server.ip_address}:${config.server.port}/`);
 });
 
-app.get('/client/defense.js', (req, res) => res.send(path.join(__dirname, '/client/defense.js')))
-app.get('/client/offense.js', (req, res) => res.send(path.join(__dirname, '/client/offense.js')))
+app.get('/client/defense.js', (req, res) => res.sendFile(path.join(__dirname, '/client/defense.js')))
+app.get('/client/offense.js', (req, res) => res.sendFile(path.join(__dirname, '/client/offense.js')))
 
 var Game = require('./game/Game');
 
