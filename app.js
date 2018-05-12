@@ -12,8 +12,8 @@ server.listen(config.server.port, config.server.ip_address, () => {
 });
 
 
-app.get('/client/defense.js', (req, res) => res.sendFile('/client/defense.js'));
-app.get('/client/offense.js', (req, res) => res.sendFile('/client/offense.js'));
+app.get('/client/defense.js', (req, res) => res.sendFile(path.join(__dirname, '/public/client/defense.js')));
+app.get('/client/offense.js', (req, res) => res.sendFile(path.join(__dirname, '/public/client/offense.js')));
 
 var Game = require('./game/Game');
 
