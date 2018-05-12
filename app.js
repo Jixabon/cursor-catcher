@@ -7,6 +7,9 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
+io.configure(function(){
+    io.set("transports", ["websocket"]);
+});
 
 app.use(express.static(__dirname + '/public'));
 app.use('/socket.io/socket.io.js', express.static(__dirname + '/node_modules/socket.io-client/dist/socket.io.js'));
