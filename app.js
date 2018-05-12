@@ -9,6 +9,9 @@ var io = require('socket.io')(server);
 
 
 app.use(express.static(__dirname + '/public'));
+app.get('/socket.io/socket.io.js', function (req, res) {
+    res.sendFile(express.static(__dirname + '/node_modules/socket.io-client/dist/socket.io.js'));
+});
 
 app.listen(config.server.port, config.server.ip_address, () => {
     console.log(`Server running at http://${config.server.ip_address}:${config.server.port}/`);
