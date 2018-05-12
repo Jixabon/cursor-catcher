@@ -10,7 +10,6 @@ server.listen(config.server.port, config.server.ip_address, () => {
 });
 
 app.use(express.static('public'));
-app.use(express.static('node_modules/socket.io-client/dist'));
 
 var Game = require('./game/Game');
 
