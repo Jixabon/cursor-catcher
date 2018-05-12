@@ -1,14 +1,23 @@
-const http = require('http');
+var config = require('./config.prod');
 
-var server_port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0'
+var express = require('express');
+var app = require('express')();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
+server.listen(config.server.port, config.server.ip_address, () => {
+  console.log(`Server running at http://${config.server.ip_address}:${config.server.port}/`);
 });
 
-server.listen(server_port, server_ip_address, () => {
-  console.log(`Server running at http://${server_ip_address}:${server_port}/`);
+app.use(express.static('public'));
+
+var Game = require('./game/Game');
+
+io.on('connection', function (socket) {
+
+    var CursorCatcher = new Game(socket);
+
+    socket.on('disconnect', function () {
+        io.emit('user disconnected');
+    });
 });
