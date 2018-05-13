@@ -1,7 +1,6 @@
 var config = require('./config.prod');
 
 var express = require('express');
-var path = require('path');
 
 var app = require('express')();
 var server = require('http').Server(app);
