@@ -4,9 +4,9 @@ var express = require('express');
 
 var app = require('express')();
 var server = require('http').Server(app);
-var io = require('socket.io', {
-    transports: ['websocket']
-})(server);
+var io = require('socket.io')(server);
+
+io.set('transports', ['websocket']);
 
 app.use(express.static(__dirname + '/public'));
 
