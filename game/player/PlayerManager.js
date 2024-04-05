@@ -2,7 +2,7 @@
 var Player = require('./Player');
 
 // Class
-function PlayerManager(socket) {
+function PlayerManager(socket_io) {
     // List of players
     this.players = [];
 
@@ -12,9 +12,7 @@ function PlayerManager(socket) {
     }
 
     this.addPlayer = function(username) {
-        var player = new Player(socket, username);
-        player.username = username;
-        return this.players.push(player);
+        return this.players.push(new Player(socket_io, username));
     }
     
 }

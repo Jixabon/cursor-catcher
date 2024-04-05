@@ -1,5 +1,5 @@
 // Class
-function Player(socket, username) {
+function Player(socket_io, username) {
     // user infromation
     this.username = username;
     this.email = "email@gmail.com";
